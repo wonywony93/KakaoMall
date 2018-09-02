@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.kakao.mall.mapper.ProductMapper">
+
+<select id="getProductList" resultType="com.kakao.mall.model.entity.ProductVo">
+	select a.code,a.name,a.price,b.img1 from product_info a inner join product_images b on a.code=b.code 
+</select>
+<select id="selectOne" resultType="com.kakao.mall.model.entity.ProductVo" parameterType="String">
+	select * from product_info a inner join product_images b on a.code=b.code where a.code=#{param1}
+</select>
+ 
+</mapper>

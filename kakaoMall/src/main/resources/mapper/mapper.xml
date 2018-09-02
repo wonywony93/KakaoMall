@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.kakao.mall.mapper.UserMapper">
+	<insert id="insertOne" parameterType="com.kakao.mall.model.entity.UserVo">
+	insert into user_info values(#{id},#{password},#{name},#{birth},#{email},#{phone},#{address})
+	</insert>
+	<select id="login" resultType="string" parameterType="com.kakao.mall.model.entity.UserVo">
+	select id from user_info where id=#{id} and password=#{password}
+	</select>
+	<insert id="buy" parameterType="com.kakao.mall.model.entity.ShoppingVo">
+	insert into shopping_cart values(#{id},#{code},#{amount},now(),#{totalMoney})
+	</insert>
+	<select id="cart" resultType="com.kakao.mall.model.entity.ShoppingVo" parameterType="String">
+	select a.id,a.code,a.amount,a.purchaseTime,a.totalMoney,b.name from shopping_cart a inner join product_info b on a.code=b.code where a.id=#{param1}	
+	</select>
+	
+</mapper>
